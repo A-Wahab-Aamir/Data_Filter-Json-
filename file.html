@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- your meta tags and styles -->
+</head>
+<body>
+    <div class="container">
+        <table class="table text-center">
+            <thead>
+                <!-- your table header -->
+            </thead>
+            <tbody id="row">
+                <!-- Table rows will be dynamically generated here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Your JSON data (replace this with your actual data)
+        var data = [
+            {
+                "image": "path_to_image",
+                "Student_Name": "John Doe",
+                "Father_Name": "Michael Doe",
+                "Class": "10th",
+                "Contact": "1234567890"
+            },
+            // Add more student records as needed
+        ];
+
+        // Function to display data in the table
+        function displayData() {
+            var tableRows = '';
+            for (var i = 0; i < data.length; i++) {
+                tableRows += `
+                    <tr>
+                        <td><img src="${data[i].image}" alt="" srcset="" id='img' class='img-fluid'></td>
+                        <td>${data[i].Student_Name}</td>
+                        <td>${data[i].Father_Name}</td>
+                        <td>${data[i].Class}</td>
+                        <td>${data[i].Contact}</td>
+                        <td>
+                            <input type="button" value="Update" class="btn btn-success">
+                            <input type="button" value="Delete" class="btn btn-danger" onclick='Del(${i})'>
+                        </td>
+                    </tr>
+                `;
+            }
+            document.getElementById('row').innerHTML = tableRows;
+        }
+
+        // Initial display of data
+        displayData();
+
+        // Function to delete a student record
+        function Del(index) {
+            if (confirm("Are you sure you want to delete this student record?")) {
+                data.splice(index, 1); // Remove the item at the given index
+                displayData(); // Re-display the table without the deleted row
+            }
+        }
+    </script>
+
+    <!-- your script tags for Bootstrap and other libraries -->
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Title</title>
+<style>
+    #img{
+        width: 100%;
+        height: 100px;
+        object-fit: contain;
+        
+    }
+</style>
+</head>
+<body>
+
+    <div class="container-fuid text-center bg-dark p-5 text-white">
+
+        <h1>Student Management Sys.</h1>
+
+    </div>
+<div class="container">
+
+    <!-- filter -->
+    <select name="" id="filterdata" class="form-control mt-5 mb-5" onclick="Filter(this.value)">
+        <option value="all">Select All Data</option>
+       
+    </select>
+    <!-- filter -->
+
+
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <th>Student Id</th>
+                <th>Student Profile</th>
+                <th>Student Name</th>
+                <th>Student Father Name</th>
+                <th>Student Class</th>
+                <th>Student Contact </th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="row">
+          
+        </tbody>
+    </table>
+</div>
+<script src="student.js"></script>
+
+<script>
+   function Display_Data(){
+    for(var i=0; i < data.length; i++){
+        document.getElementById('row').innerHTML += `
+        <tr>
+            <td>${i}</td>
+        <td><img src="${data[i].image}" alt="" srcset="" id='img' class='img-fluid'></td>
+        <td>${data[i].Student_Name}</td>
+        <td>${data[i].Father_Name}</td>
+        <td>${data[i].Class}</td>
+        <td>${data[i].Contact}</td>
+        <td>
+            <input type="button" value="Update" class="btn btn-success" >
+            <input type="button" value="Delete" class="btn btn-danger" 
+           </td>
+       
+        </tr>
+        `   
+
+        document.getElementById('filterdata').innerHTML+=`
+        <option value="${i}">${i}</option>
+        `
+        
+}
+
+   }
+
+
+// filter work
+function Filter(myid){
+    if(myid === "all"){
+        document.getElementById('row').innerHTML ="";
+        document.getElementById('filterdata').innerHTML =`
+        <option value="all">Select All Data  </option>`
+
+        Display_Data()
+       
+
+    }
+    else{
+
+        var dataToMap=[data[myid]]
+    for(var i=0; i < dataToMap.length; i++){
+        document.getElementById('row').innerHTML = `
+        <tr>
+            <td>${myid}</td>
+        <td><img src="${dataToMap[i].image}" alt="" srcset="" id='img' class='img-fluid'></td>
+        <td>${dataToMap[i].Student_Name}</td>
+        <td>${dataToMap[i].Father_Name}</td>
+        <td>${dataToMap[i].Class}</td>
+        <td>${dataToMap[i].Contact}</td>
+        <td>
+            <input type="button" value="Update" class="btn btn-success" >
+            <input type="button" value="Delete" class="btn btn-danger" 
+           </td>
+       
+        </tr>
+        `   
+
+          
+}
+
+
+
+    }
+
+    
+   
+    
+}
+
+Display_Data()
+
+</script>
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+</html>
